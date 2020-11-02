@@ -1,0 +1,203 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Open API Spec of Openweathermap APIs. You can find more about Open API Spec here (https://openapis.org/)",
+    "version" : "1.0.0",
+    "title" : "Open API Openweathermap API Program",
+    "termsOfService" : "https://samples.openweathermap.org/terms-of-service",
+    "contact" : {
+      "name" : "API Team",
+      "url" : "https://samples.openweathermap.org/contact",
+      "email" : "apiteam@openweathermap.org"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "samples.openweathermap.org",
+  "basePath" : "/",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/data/2.5/weather" : {
+      "get" : {
+        "summary" : "find 2.5 weather",
+        "operationId" : "find2.5weather",
+        "produces" : [ "application/json; charset=utf-8" ],
+        "parameters" : [ {
+          "name" : "q",
+          "in" : "query",
+          "description" : "",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "appid",
+          "in" : "query",
+          "description" : "",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "inline_response_200_sys" : {
+      "type" : "object",
+      "required" : [ "country", "id", "message", "sunrise", "sunset", "type" ],
+      "properties" : {
+        "type" : {
+          "type" : "number"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "message" : {
+          "type" : "number"
+        },
+        "country" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "sunrise" : {
+          "type" : "number"
+        },
+        "sunset" : {
+          "type" : "number"
+        }
+      }
+    },
+    "inline_response_200_coord" : {
+      "type" : "object",
+      "required" : [ "lat", "lon" ],
+      "properties" : {
+        "lon" : {
+          "type" : "number"
+        },
+        "lat" : {
+          "type" : "number"
+        }
+      }
+    },
+    "inline_response_200_wind" : {
+      "type" : "object",
+      "required" : [ "deg", "speed" ],
+      "properties" : {
+        "speed" : {
+          "type" : "number"
+        },
+        "deg" : {
+          "type" : "number"
+        }
+      }
+    },
+    "inline_response_200_weather" : {
+      "type" : "object",
+      "required" : [ "description", "icon", "id", "main" ],
+      "properties" : {
+        "id" : {
+          "type" : "number"
+        },
+        "main" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "description" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "icon" : {
+          "type" : "string",
+          "minLength" : 1
+        }
+      }
+    },
+    "inline_response_200_main" : {
+      "type" : "object",
+      "required" : [ "humidity", "pressure", "temp", "temp_max", "temp_min" ],
+      "properties" : {
+        "temp" : {
+          "type" : "number"
+        },
+        "pressure" : {
+          "type" : "number"
+        },
+        "humidity" : {
+          "type" : "number"
+        },
+        "temp_min" : {
+          "type" : "number"
+        },
+        "temp_max" : {
+          "type" : "number"
+        }
+      }
+    },
+    "inline_response_200_clouds" : {
+      "type" : "object",
+      "required" : [ "all" ],
+      "properties" : {
+        "all" : {
+          "type" : "number"
+        }
+      }
+    },
+    "inline_response_200" : {
+      "type" : "object",
+      "required" : [ "base", "clouds", "cod", "coord", "dt", "id", "main", "name", "sys", "visibility", "weather", "wind" ],
+      "properties" : {
+        "coord" : {
+          "$ref" : "#/definitions/inline_response_200_coord"
+        },
+        "weather" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "$ref" : "#/definitions/inline_response_200_weather"
+          },
+          "minItems" : 1
+        },
+        "base" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "main" : {
+          "$ref" : "#/definitions/inline_response_200_main"
+        },
+        "visibility" : {
+          "type" : "number"
+        },
+        "wind" : {
+          "$ref" : "#/definitions/inline_response_200_wind"
+        },
+        "clouds" : {
+          "$ref" : "#/definitions/inline_response_200_clouds"
+        },
+        "dt" : {
+          "type" : "number"
+        },
+        "sys" : {
+          "$ref" : "#/definitions/inline_response_200_sys"
+        },
+        "id" : {
+          "type" : "number"
+        },
+        "name" : {
+          "type" : "string",
+          "minLength" : 1
+        },
+        "cod" : {
+          "type" : "number"
+        }
+      },
+      "description" : ""
+    }
+  }
+}
